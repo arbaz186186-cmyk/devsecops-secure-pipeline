@@ -18,7 +18,7 @@ jobs:
         run: docker build -t secure-employee-portal:${{ github.sha }} .
 
       - name: Scan image with Trivy
-        uses: uses: aquasecurity/trivy-action@master
+        uses: uses:aquasecurity/trivy-action@master
         with:
           image-ref: secure-employee-portal:${{ github.sha }}
           format: table
