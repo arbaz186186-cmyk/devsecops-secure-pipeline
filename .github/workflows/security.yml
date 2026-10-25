@@ -2,9 +2,11 @@ name: DevSecOps Security Scan
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
   pull_request:
-    branches: [master]
+    branches:
+      - master
 
 jobs:
   security-scan:
@@ -18,10 +20,11 @@ jobs:
         run: docker build -t secure-employee-portal:${{ github.sha }} .
 
       - name: Scan image with Trivy
-        uses: aquasecurity/trivy-action@0@master
+        uses: aquasecurity/trivy-action@0.36.0
         with:
           image-ref: secure-employee-portal:${{ github.sha }}
           format: table
           exit-code: '1'
           ignore-unfixed: true
           severity: CRITICAL,HIGH
+
